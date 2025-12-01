@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JAVOOW — Portfolio</title>
+  <style>
+    :root{
+      --bg: #0d0d0d;
+      --panel: #1a1a1a;
+      --accent: #ffffff;
+      --max-width: 900px;
+    }
+    *{box-sizing: border-box}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.5;
+    }
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      transition: opacity .15s ease, transform .12s ease;
+    }
+    nav a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    main{padding: 0 1rem}
+    section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+    .project {
+      background: var(--panel);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    /* Small tweaks for headings */
+    h3{margin:0 0 .5rem 0;font-size:1.1rem}
+
+    /* Responsive layout */
+    @media (max-width: 700px){
+      header{font-size:1.6rem;padding:1.25rem 1rem}
+      nav{flex-direction:column;gap:.5rem;margin-bottom:1rem}
+      nav a{font-size:1.05rem}
+      section{padding:1rem 0}
+      .project{padding:1rem}
+    }
+    @media (max-width: 420px){
+      :root{--max-width:100%}
+      header{font-size:1.25rem}
+      nav a{font-size:1rem}
+    }
+  </style>
+</head>
+<body>
+  <header>JAVOOW</header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#music">Music</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>Javoow is a multidisciplinary creative — filmmaker, writer, artist, and rapper. Focused on cinematic storytelling, experimental aesthetics, and worldbuilding across music and film.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Film + Video Projects</h2>
+    <div class="project">
+      <h3>Sounds of Summer (2025)</h3>
+      <p>Psychological drama blending surreal visuals, narration, and a romanticized summer score.</p>
+    </div>
+    <div class="project">
+      <h3>Donut-02 — IB Film (2024)</h3>
+      <p>Cinematography + editing showcase featuring narrative tension and stylized visual motifs.</p>
+    </div>
+  </section>
+
+  <section id="music">
+    <h2>Music</h2>
+    <p><strong>The Paladins Album</strong> — medieval-inspired rap collaboration with Yakived Prade and Suede. Independent release.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email (placeholder): javoow@example.com</p>
+  </section>
+
+</body>
+</html>
