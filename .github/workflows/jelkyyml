@@ -1,0 +1,29 @@
+name: Build & Deploy Jekyll
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Build Jekyll site in Docker
+      - name: Build Jekyll site
+        run: |
+          docker run --rm \
+            --volume="${{ github.workspace }}:/srv/jekyll" \
+            jekyll/builder:4 bash -c "bundle install && jekyll build --trace --cache-dir /srv/jekyll/.jekyll-cache"
+
+      # Step 3: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
