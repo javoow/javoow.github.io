@@ -325,9 +325,9 @@ footer{font-size:0.68rem;color:var(--text-soft);text-align:center;opacity:0.7;pa
   <div class="contact-card glass">
     <div>
       <div class="contact-label">Business Inquiries</div>
-      <a class="contact-email" id="contact-email-el" href="mailto:javoowservices@gmail.com">javoowservices@gmail.com</a>
+      <a class="contact-email" id="contact-email-el" href="/cdn-cgi/l/email-protection#fa909b8c95958d899f888c93999f89ba9d979b9396d4999597"><span class="__cf_email__" data-cfemail="d7bdb6a1b8b8a0a4b2a5a1beb4b2a497b0bab6bebbf9b4b8ba">[email&#160;protected]</span></a>
     </div>
-    <a class="pill-btn" id="contact-btn-el" href="mailto:javoowservices@gmail.com">✉ Contact</a>
+    <a class="pill-btn" id="contact-btn-el" href="/cdn-cgi/l/email-protection#83e9e2f5ececf4f0e6f1f5eae0e6f0c3e4eee2eaefade0ecee">✉ Contact</a>
   </div>
 
   <footer id="footer-el">© 2025 javoow · world network · all rights reserved</footer>
@@ -528,7 +528,7 @@ footer{font-size:0.68rem;color:var(--text-soft);text-align:center;opacity:0.7;pa
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ══════════════════════════════════════════
 // DEFAULT DATA
 // ══════════════════════════════════════════
@@ -883,25 +883,25 @@ audio.addEventListener('pause',()=>{ isPlaying=false; document.getElementById('p
 
 audio.volume=0.8;
 
-// Keyboard shortcuts — Ctrl+Alt+Delete opens admin, Space/arrows for player
+// Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A = open admin
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+let konamiPos = 0;
+
 document.addEventListener('keydown',e=>{
-  // Ctrl + Alt + Delete = open admin
-  if(e.ctrlKey && e.altKey && e.key==='Delete'){
-    e.preventDefault();
-    openLogin();
-    return;
+  // Check Konami sequence
+  if(e.code === KONAMI[konamiPos]){
+    konamiPos++;
+    if(konamiPos === KONAMI.length){
+      konamiPos = 0;
+      openLogin();
+      return;
+    }
+  } else {
+    konamiPos = e.code === KONAMI[0] ? 1 : 0;
   }
+
   if(['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
   if(e.code==='Space'){ e.preventDefault(); togglePlay(); }
-  if(e.code==='ArrowRight') nextTrack();
-  if(e.code==='ArrowLeft') prevTrack();
 });
 
-// ══════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════
-renderSite();
-initPlayer();
-</script>
-</body>
-</html>
+// ══════�
