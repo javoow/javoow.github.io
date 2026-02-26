@@ -885,19 +885,45 @@ audio.volume=0.8;
 
 // Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A = open admin
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+const KONAMI_DISPLAY = ['↑','↑','↓','↓','←','→','←','→','B','A'];
 let konamiPos = 0;
+let konamiTimer = null;
+
+// Progress indicator element
+const konamiHint = document.createElement('div');
+konamiHint.style.cssText = `
+  position:fixed;bottom:100px;left:50%;transform:translateX(-50%);
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);
+  border:1.5px solid rgba(0,196,223,0.4);border-radius:50px;
+  padding:8px 20px;font-family:'Comfortaa',sans-serif;font-size:1rem;
+  color:#007fa0;letter-spacing:6px;z-index:1000;
+  box-shadow:0 4px 20px rgba(0,180,220,0.2);
+  display:none;transition:opacity 0.3s;
+`;
+document.body.appendChild(konamiHint);
 
 document.addEventListener('keydown',e=>{
-  // Check Konami sequence
   if(e.code === KONAMI[konamiPos]){
     konamiPos++;
+
+    // Show progress
+    konamiHint.textContent = KONAMI_DISPLAY.slice(0, konamiPos).join(' ');
+    konamiHint.style.display = 'block';
+    clearTimeout(konamiTimer);
+    konamiTimer = setTimeout(()=>{ konamiHint.style.display='none'; konamiPos=0; }, 2000);
+
     if(konamiPos === KONAMI.length){
       konamiPos = 0;
+      konamiHint.style.display = 'none';
+      clearTimeout(konamiTimer);
       openLogin();
       return;
     }
   } else {
-    konamiPos = e.code === KONAMI[0] ? 1 : 0;
+    konamiPos = 0;
+    konamiHint.style.display = 'none';
+    clearTimeout(konamiTimer);
+    if(e.code === KONAMI[0]){ konamiPos = 1; konamiHint.textContent = '↑'; konamiHint.style.display='block'; konamiTimer=setTimeout(()=>{konamiHint.style.display='none';konamiPos=0;},2000); }
   }
 
   if(['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
