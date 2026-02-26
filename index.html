@@ -294,7 +294,6 @@ footer{font-size:0.68rem;color:var(--text-soft);text-align:center;opacity:0.7;pa
       <li><a href="#">Home</a></li>
       <li><a href="#">Daita</a></li>
       <li><a href="#">Portfolio</a></li>
-      <li><button class="admin-trigger" onclick="openLogin()">⚙ Admin</button></li>
     </ul>
   </nav>
 
@@ -534,7 +533,7 @@ footer{font-size:0.68rem;color:var(--text-soft);text-align:center;opacity:0.7;pa
 // DEFAULT DATA
 // ══════════════════════════════════════════
 const DEFAULTS = {
-  password: 'javoow2025',
+  password: '1987',
   profile: { name:'javoow', tagline:'world network', logo:'javoow', avatarEmoji:'🎵', avatarUrl:'', email:'javoowservices@gmail.com', footer:'© 2025 javoow · world network · all rights reserved' },
   hero: { label:'🎵 New Album Out Now', title:'Pittsburgh PA', sub:'Available everywhere — stream it now', cta:'Listen ↗', url:'https://distrokid.com/hyperfollow/javoow/im-from-pittsburgh-pa-2', img:'' },
   links: [
@@ -558,7 +557,7 @@ function load(key, fallback){ try{ const v=localStorage.getItem(key); return v?J
 function save(key,val){ localStorage.setItem(key,JSON.stringify(val)); }
 
 let DATA = {
-  password: load('jv_pwd', DEFAULTS.password),
+  password: load('jv_pwd', '1987'),
   profile:  load('jv_profile', DEFAULTS.profile),
   hero:     load('jv_hero', DEFAULTS.hero),
   links:    load('jv_links', DEFAULTS.links),
@@ -884,8 +883,14 @@ audio.addEventListener('pause',()=>{ isPlaying=false; document.getElementById('p
 
 audio.volume=0.8;
 
-// Keyboard shortcuts
+// Keyboard shortcuts — Ctrl+Alt+Delete opens admin, Space/arrows for player
 document.addEventListener('keydown',e=>{
+  // Ctrl + Alt + Delete = open admin
+  if(e.ctrlKey && e.altKey && e.key==='Delete'){
+    e.preventDefault();
+    openLogin();
+    return;
+  }
   if(['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
   if(e.code==='Space'){ e.preventDefault(); togglePlay(); }
   if(e.code==='ArrowRight') nextTrack();
